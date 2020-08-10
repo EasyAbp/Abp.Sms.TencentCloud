@@ -1,0 +1,39 @@
+﻿using Volo.Abp.Modularity;
+using Volo.Abp.Localization;
+using EasyAbp.Abp.Sms.TencentCloud.Localization;
+using Volo.Abp.Localization.ExceptionHandling;
+using Volo.Abp.Sms;
+using Volo.Abp.Validation;
+using Volo.Abp.Validation.Localization;
+using Volo.Abp.VirtualFileSystem;
+
+namespace EasyAbp.Abp.Sms.TencentCloud
+{
+    [DependsOn(
+        typeof(AbpSmsModule),
+        typeof(AbpValidationModule)
+    )]
+    public class AbpSmsTencentCloudModule : AbpModule
+    {
+        public override void ConfigureServices(ServiceConfigurationContext context)
+        {
+            Configure<AbpVirtualFileSystemOptions>(options =>
+            {
+                options.FileSets.AddEmbedded<AbpSmsTencentCloudModule>();
+            });
+
+            Configure<AbpLocalizationOptions>(options =>
+            {
+                options.Resources
+                    .Add<TencentCloudResource>("en")
+                    .AddBaseTypes(typeof(AbpValidationResource))
+                    .AddVirtualJson("EasyAbp/Abp/Sms/TencentCloud/Localization");
+            });
+
+            Configure<AbpExceptionLocalizationOptions>(options =>
+            {
+                options.MapCodeNamespace("EasyAbp.Abp.Sms.TencentCloud", typeof(TencentCloudResource));
+            });
+        }
+    }
+}
