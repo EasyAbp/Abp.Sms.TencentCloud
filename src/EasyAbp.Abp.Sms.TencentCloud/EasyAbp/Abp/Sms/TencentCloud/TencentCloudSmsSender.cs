@@ -1,26 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EasyAbp.Abp.TencentCloud.Common.Requester;
 using EasyAbp.Abp.TencentCloud.Sms;
 using EasyAbp.Abp.TencentCloud.Sms.SendSms;
 using Microsoft.Extensions.Options;
+using Volo.Abp.DependencyInjection;
 using Volo.Abp.Json;
 using Volo.Abp.Sms;
 
 namespace EasyAbp.Abp.Sms.TencentCloud
 {
-    public class TencentCloudSmsSender : ISmsSender
+    public class TencentCloudSmsSender : ISmsSender, ITransientDependency
     {
         private readonly AbpTencentCloudSmsOptions _options;
         private readonly IJsonSerializer _jsonSerializer;
-        private readonly TencentCloudApiRequester _requester;
+        private readonly ITencentCloudApiRequester _requester;
 
         public TencentCloudSmsSender(
             IJsonSerializer jsonSerializer,
             IOptions<AbpTencentCloudSmsOptions> options,
-            TencentCloudApiRequester requester)
+            ITencentCloudApiRequester requester)
         {
             _options = options.Value;
             _jsonSerializer = jsonSerializer;
