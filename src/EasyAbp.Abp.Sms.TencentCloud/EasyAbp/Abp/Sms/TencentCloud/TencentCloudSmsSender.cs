@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EasyAbp.Abp.TencentCloud.Common.Requester;
@@ -45,7 +46,9 @@ namespace EasyAbp.Abp.Sms.TencentCloud
 
         protected virtual string GetStringProperty(SmsMessage smsMessage, string key, string defaultValue = null)
         {
-            return smsMessage.Properties.GetOrDefault(key) as string;
+            var str = smsMessage.Properties.GetOrDefault(key) as string;
+            
+            return !str.IsNullOrEmpty() ? str : defaultValue;
         }
 
         protected virtual string[] GetTemplateParamSet(SmsMessage smsMessage)
@@ -55,7 +58,7 @@ namespace EasyAbp.Abp.Sms.TencentCloud
             return obj switch
             {
                 null => null,
-                string str => _jsonSerializer.Deserialize<IEnumerable<string>>(str).ToArray(),
+                string str => _jsonSerializer.Deserialize<string[]>(str),
                 IEnumerable<string> set => set.ToArray(),
                 _ => throw new InvalidTemplateParamSetException()
             };

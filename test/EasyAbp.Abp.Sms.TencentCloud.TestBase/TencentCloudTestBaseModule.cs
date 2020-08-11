@@ -1,10 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using EasyAbp.Abp.TencentCloud.Common;
+using EasyAbp.Abp.TencentCloud.Sms;
+using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp;
 using Volo.Abp.Authorization;
 using Volo.Abp.Autofac;
-using Volo.Abp.Data;
 using Volo.Abp.Modularity;
-using Volo.Abp.Threading;
 
 namespace EasyAbp.Abp.Sms.TencentCloud
 {
@@ -19,6 +19,18 @@ namespace EasyAbp.Abp.Sms.TencentCloud
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             context.Services.AddAlwaysAllowAuthorization();
+            
+            Configure<AbpTencentCloudCommonOptions>(op =>
+            {
+                op.SecretId = TencentCloudTestConsts.SecretId;
+                op.SecretKey = TencentCloudTestConsts.SecretKey;
+            });
+            
+            Configure<AbpTencentCloudSmsOptions>(op =>
+            {
+                op.DefaultSmsSdkAppid = TencentCloudTestConsts.SmsSdkAppid;
+                op.DefaultSign = TencentCloudTestConsts.Sign;
+            });
         }
     }
 }
