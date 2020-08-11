@@ -29,18 +29,18 @@ namespace EasyAbp.Abp.Sms.TencentCloud
         
         public virtual async Task SendAsync(SmsMessage smsMessage)
         {
-            await _requester.SendRequestAsync<SendSmsResponse>(
-                new SendSmsRequest(
-                    new []{smsMessage.PhoneNumber},
-                    GetStringProperty(smsMessage, AbpSmsTencentCloudConsts.TemplateIdPropertyName),
-                    GetStringProperty(smsMessage, AbpSmsTencentCloudConsts.SmsSdkAppidPropertyName, _options.DefaultSmsSdkAppid),
-                    GetStringProperty(smsMessage, AbpSmsTencentCloudConsts.SignPropertyName, _options.DefaultSign),
-                    GetTemplateParamSet(smsMessage),
-                    GetStringProperty(smsMessage, AbpSmsTencentCloudConsts.ExtendCodePropertyName, _options.DefaultExtendCode),
-                    GetStringProperty(smsMessage, AbpSmsTencentCloudConsts.SessionContextPropertyName),
-                    GetStringProperty(smsMessage, AbpSmsTencentCloudConsts.SenderIdPropertyName, _options.DefaultSenderId)
-                ),
-                _options.EndPoint);
+            var request = new SendSmsRequest(
+                new[] {smsMessage.PhoneNumber},
+                GetStringProperty(smsMessage, AbpSmsTencentCloudConsts.TemplateIdPropertyName),
+                GetStringProperty(smsMessage, AbpSmsTencentCloudConsts.SmsSdkAppidPropertyName, _options.DefaultSmsSdkAppid),
+                GetStringProperty(smsMessage, AbpSmsTencentCloudConsts.SignPropertyName, _options.DefaultSign),
+                GetTemplateParamSet(smsMessage) ?? new[] {smsMessage.Text},
+                GetStringProperty(smsMessage, AbpSmsTencentCloudConsts.ExtendCodePropertyName, _options.DefaultExtendCode),
+                GetStringProperty(smsMessage, AbpSmsTencentCloudConsts.SessionContextPropertyName),
+                GetStringProperty(smsMessage, AbpSmsTencentCloudConsts.SenderIdPropertyName, _options.DefaultSenderId)
+            );
+            
+            await _requester.SendRequestAsync<SendSmsResponse>(request, _options.EndPoint);
         }
 
         protected virtual string GetStringProperty(SmsMessage smsMessage, string key, string defaultValue = null)
