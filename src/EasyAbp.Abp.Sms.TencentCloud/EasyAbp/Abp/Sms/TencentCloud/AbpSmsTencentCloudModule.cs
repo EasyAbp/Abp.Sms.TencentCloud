@@ -1,6 +1,7 @@
 ﻿using Volo.Abp.Modularity;
 using Volo.Abp.Localization;
 using EasyAbp.Abp.Sms.TencentCloud.Localization;
+using EasyAbp.Abp.TencentCloud.Sms;
 using Volo.Abp.Json;
 using Volo.Abp.Localization.ExceptionHandling;
 using Volo.Abp.Sms;
@@ -13,7 +14,8 @@ namespace EasyAbp.Abp.Sms.TencentCloud
     [DependsOn(
         typeof(AbpJsonModule),
         typeof(AbpSmsModule),
-        typeof(AbpValidationModule)
+        typeof(AbpValidationModule),
+        typeof(AbpTencentCloudSmsModule)
     )]
     public class AbpSmsTencentCloudModule : AbpModule
     {
