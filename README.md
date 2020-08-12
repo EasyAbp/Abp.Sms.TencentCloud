@@ -40,8 +40,6 @@ Abp TencentCloud SMS module.
 
 2. Try to send a SMS message.
 
-    * Send with Text.
-
     ```csharp
     var code = "123456";    // The generated verification code
     var templateId = "400000";  // TencentCloud SMS template ID
@@ -49,26 +47,10 @@ Abp TencentCloud SMS module.
 
     var smsSender = ServiceProvider.GetRequiredService<ISmsSender>();
 
-    // The "text" param should not be null or empty, but it has no effect in TencentCloud SMS.
+    // The "text" param has no effect in TencentCloud SMS, but it cannot be null or empty.
     var smsMessage = new SmsMessage(phoneNumber, "placeholder");
     smsMessage.Properties.Add(AbpSmsTencentCloudConsts.TemplateIdPropertyName, templateId);
     smsMessage.Properties.Add(AbpSmsTencentCloudConsts.TemplateParamSetPropertyName, new [] {code});
-    
-    await smsSender.SendAsync(smsMessage);
-    ```
-
-    * Send with TemplateParamSet.
-
-    ```csharp
-    var code = "123456";    // The generated verification code
-    var templateId = "400000";  // TencentCloud SMS template ID
-    var phoneNumber = "+8613000000000";
-
-    var smsSender = ServiceProvider.GetRequiredService<ISmsSender>();
-
-    // The "text" param will be added to the TemplateParamSet if the latter is not set.
-    var smsMessage = new SmsMessage(phoneNumber, code);
-    smsMessage.Properties.Add(AbpSmsTencentCloudConsts.TemplateIdPropertyName, templateId);
     
     await smsSender.SendAsync(smsMessage);
     ```

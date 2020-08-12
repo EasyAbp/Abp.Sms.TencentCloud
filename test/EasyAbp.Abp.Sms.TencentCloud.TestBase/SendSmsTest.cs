@@ -10,7 +10,7 @@ namespace EasyAbp.Abp.Sms.TencentCloud
     public class SendSmsTests : TencentCloudTestBase<TencentCloudTestBaseModule>
     {
         [Fact]
-        public async Task SendSmsWithTemplateParamSetTest()
+        public async Task SendSmsTest()
         {
             const string code = "123456";
 
@@ -20,20 +20,6 @@ namespace EasyAbp.Abp.Sms.TencentCloud
             
             smsMessage.Properties.Add(AbpSmsTencentCloudConsts.TemplateIdPropertyName, TencentCloudTestConsts.TemplateId);
             smsMessage.Properties.Add(AbpSmsTencentCloudConsts.TemplateParamSetPropertyName, new [] {code});
-            
-            await smsSender.SendAsync(smsMessage);
-        }
-        
-        [Fact]
-        public async Task SendSmsWithTextTest()
-        {
-            const string code = "654321";
-            
-            var smsSender = ServiceProvider.GetRequiredService<ISmsSender>();
-
-            var smsMessage = new SmsMessage(TencentCloudTestConsts.PhoneNumber, code);
-            
-            smsMessage.Properties.Add(AbpSmsTencentCloudConsts.TemplateIdPropertyName, TencentCloudTestConsts.TemplateId);
             
             await smsSender.SendAsync(smsMessage);
         }

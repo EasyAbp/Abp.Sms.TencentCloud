@@ -35,7 +35,7 @@ namespace EasyAbp.Abp.Sms.TencentCloud
                 GetStringProperty(smsMessage, AbpSmsTencentCloudConsts.TemplateIdPropertyName),
                 GetStringProperty(smsMessage, AbpSmsTencentCloudConsts.SmsSdkAppidPropertyName, _options.DefaultSmsSdkAppid),
                 GetStringProperty(smsMessage, AbpSmsTencentCloudConsts.SignPropertyName, _options.DefaultSign),
-                GetTemplateParamSet(smsMessage) ?? new[] {smsMessage.Text},
+                GetTemplateParamSet(smsMessage),
                 GetStringProperty(smsMessage, AbpSmsTencentCloudConsts.ExtendCodePropertyName, _options.DefaultExtendCode),
                 GetStringProperty(smsMessage, AbpSmsTencentCloudConsts.SessionContextPropertyName),
                 GetStringProperty(smsMessage, AbpSmsTencentCloudConsts.SenderIdPropertyName, _options.DefaultSenderId)
