@@ -2,18 +2,17 @@
 
 [![NuGet](https://img.shields.io/nuget/v/EasyAbp.Abp.Sms.TencentCloud.svg?style=flat-square)](https://www.nuget.org/packages/EasyAbp.Abp.Sms.TencentCloud)
 [![NuGet Download](https://img.shields.io/nuget/dt/EasyAbp.Abp.Sms.TencentCloud.svg?style=flat-square)](https://www.nuget.org/packages/EasyAbp.Abp.Sms.TencentCloud)
+[![GitHub stars](https://img.shields.io/github/stars/EasyAbp/Abp.Sms.TencentCloud?style=social)](https://www.github.com/EasyAbp/Abp.Sms.TencentCloud)
 
 Abp TencentCloud SMS module.
 
-## Getting Started
+## Installation
 
-* Install with [AbpHelper](https://github.com/EasyAbp/AbpHelper.GUI)
-    Coming soon.
+1. Install the following NuGet packages. ([see how](https://github.com/EasyAbp/EasyAbpGuide/blob/master/How-To.md#add-nuget-packages))
 
-1. Install the following NuGet packages. (see how)
     * EasyAbp.Abp.Sms.TencentCloud
 
-1. Add `DependsOn(typeof(xxx))` attribute to configure the module dependencies. (see how)
+1. Add `DependsOn(typeof(AbpSmsTencentCloudModule))` attribute to configure the module dependencies. ([see how](https://github.com/EasyAbp/EasyAbpGuide/blob/master/How-To.md#add-module-dependencies))
 
 ## Usage
 
