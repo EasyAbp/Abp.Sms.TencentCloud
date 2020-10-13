@@ -47,7 +47,8 @@ Abp TencentCloud SMS module.
     var smsSender = ServiceProvider.GetRequiredService<ISmsSender>();
 
     // The "text" param has no effect in TencentCloud SMS, but it cannot be null or empty.
-    var smsMessage = new SmsMessage(phoneNumber, "placeholder");
+    const string text = "placeholder";
+    var smsMessage = new SmsMessage(phoneNumber, text);
     smsMessage.Properties.Add(AbpSmsTencentCloudConsts.TemplateIdPropertyName, templateId);
     smsMessage.Properties.Add(AbpSmsTencentCloudConsts.TemplateParamSetPropertyName, new [] {code});
     
