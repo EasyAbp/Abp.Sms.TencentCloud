@@ -4,15 +4,17 @@ using EasyAbp.Abp.Sms.TencentCloud.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Volo.Abp.EntityFrameworkCore;
 
 namespace EasyAbp.Abp.Sms.TencentCloud.Migrations
 {
     [DbContext(typeof(IdentityServerHostMigrationsDbContext))]
-    partial class IdentityServerHostMigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201021091712_AddedFeatureManagement")]
+    partial class AddedFeatureManagement
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
