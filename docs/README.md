@@ -36,6 +36,8 @@ Abp TencentCloud SMS module.
         });
     }
     ```
+   
+   You can also use [ABP settings](https://github.com/EasyAbp/Abp.Sms.TencentCloud/tree/master/src/EasyAbp.Abp.Sms.TencentCloud/EasyAbp/Abp/Sms/TencentCloud/Settings/AbpSmsTencentCloudSettingDefinitionProvider.cs) to control the values of the above options. We recommend to you a great tool module to manage settings: [Abp.SettingUI](https://easyabp.io/modules/Abp.SettingUi).
 
 2. Try to send a SMS message.
 

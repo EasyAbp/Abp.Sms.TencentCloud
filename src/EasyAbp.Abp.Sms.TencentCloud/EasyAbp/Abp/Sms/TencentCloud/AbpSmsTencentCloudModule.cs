@@ -29,14 +29,14 @@ namespace EasyAbp.Abp.Sms.TencentCloud
             Configure<AbpLocalizationOptions>(options =>
             {
                 options.Resources
-                    .Add<TencentCloudResource>("en")
+                    .Add<AbpSmsTencentCloudResource>("en")
                     .AddBaseTypes(typeof(AbpValidationResource))
                     .AddVirtualJson("EasyAbp/Abp/Sms/TencentCloud/Localization");
             });
 
             Configure<AbpExceptionLocalizationOptions>(options =>
             {
-                options.MapCodeNamespace("EasyAbp.Abp.Sms.TencentCloud", typeof(TencentCloudResource));
+                options.MapCodeNamespace("EasyAbp.Abp.Sms.TencentCloud", typeof(AbpSmsTencentCloudResource));
             });
         }
     }
