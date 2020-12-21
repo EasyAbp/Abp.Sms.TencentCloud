@@ -5,17 +5,14 @@ using System.Threading.Tasks;
 using EasyAbp.Abp.Sms.TencentCloud.Settings;
 using EasyAbp.Abp.TencentCloud.Common;
 using EasyAbp.Abp.TencentCloud.Common.Requester;
-using EasyAbp.Abp.TencentCloud.Sms;
 using EasyAbp.Abp.TencentCloud.Sms.SendSms;
-using Microsoft.Extensions.Options;
-using Volo.Abp.DependencyInjection;
 using Volo.Abp.Json;
 using Volo.Abp.Settings;
 using Volo.Abp.Sms;
 
 namespace EasyAbp.Abp.Sms.TencentCloud
 {
-    public class TencentCloudSmsSender : ISmsSender, ITransientDependency
+    public class TencentCloudSmsSender : ISmsSender
     {
         private readonly IJsonSerializer _jsonSerializer;
         private readonly ISettingProvider _settingProvider;

@@ -2,6 +2,7 @@
 using Volo.Abp.Localization;
 using EasyAbp.Abp.Sms.TencentCloud.Localization;
 using EasyAbp.Abp.TencentCloud.Sms;
+using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Json;
 using Volo.Abp.Localization.ExceptionHandling;
 using Volo.Abp.Sms;
@@ -21,6 +22,8 @@ namespace EasyAbp.Abp.Sms.TencentCloud
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
+            context.Services.AddSingleton<ISmsSender, TencentCloudSmsSender>();
+            
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
                 options.FileSets.AddEmbedded<AbpSmsTencentCloudModule>();
