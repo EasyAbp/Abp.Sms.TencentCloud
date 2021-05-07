@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Claims;
-using IdentityModel;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.DataProtection;
@@ -94,18 +93,12 @@ namespace EasyAbp.Abp.Sms.TencentCloud
                 options.Languages.Add(new LanguageInfo("zh-Hant", "zh-Hant", "繁體中文"));
             });
 
-            //Updates AbpClaimTypes to be compatible with identity server claims.
-            AbpClaimTypes.UserId = JwtClaimTypes.Subject;
-            AbpClaimTypes.UserName = JwtClaimTypes.Name;
-            AbpClaimTypes.Role = JwtClaimTypes.Role;
-            AbpClaimTypes.Email = JwtClaimTypes.Email;
-
             context.Services.AddAuthentication("Bearer")
-                .AddIdentityServerAuthentication(options =>
+                .AddJwtBearer(options =>
                 {
                     options.Authority = configuration["AuthServer:Authority"];
-                    options.RequireHttpsMetadata = false;
-                    options.ApiName = "TencentCloud";
+                    options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
+                    options.Audience = "TencentCloud";
                 });
 
             Configure<AbpDistributedCacheOptions>(options =>
