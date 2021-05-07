@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EasyAbp.Abp.TencentCloud.Sms" Version="1.6.0" />
+    <PackageReference Include="EasyAbp.Abp.TencentCloud.Sms" Version="$(EasyAbpAbpTencentCloudModuleVersion)" />
     <PackageReference Include="Volo.Abp.Json" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Sms" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Validation" Version="$(AbpVersion)" />
