@@ -30,8 +30,17 @@ namespace EasyAbp.Abp.Sms.TencentCloud
         
         public virtual async Task SendAsync(SmsMessage smsMessage)
         {
-            var request = new SendSmsRequest(
-                new[] {smsMessage.PhoneNumber},
+            var countryCode = await _settingProvider.GetOrNullAsync(AbpSmsTencentCloudSettings.DefaultCountryCode);
+
+            string phoneNumber = smsMessage.PhoneNumber;
+
+            if (!countryCode.IsNullOrEmpty() && !phoneNumber.StartsWith("+"))
+            {
+                phoneNumber = countryCode + phoneNumber;
+            }
+
+                var request = new SendSmsRequest(
+                new[] { phoneNumber },
                 GetStringProperty(smsMessage, AbpSmsTencentCloudConsts.TemplateIdPropertyName),
                 GetStringProperty(smsMessage, AbpSmsTencentCloudConsts.SmsSdkAppidPropertyName,
                     await _settingProvider.GetOrNullAsync(AbpSmsTencentCloudSettings.DefaultSmsSdkAppid)),

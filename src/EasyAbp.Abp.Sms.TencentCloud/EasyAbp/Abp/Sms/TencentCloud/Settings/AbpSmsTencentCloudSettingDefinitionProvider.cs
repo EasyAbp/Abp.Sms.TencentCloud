@@ -59,6 +59,11 @@ namespace EasyAbp.Abp.Sms.TencentCloud.Settings
                 AbpSmsTencentCloudSettings.DefaultSenderId,
                 _smsOptions.DefaultSenderId,
                 L("DefaultSenderId")));
+
+            context.Add(new SettingDefinition(
+                AbpSmsTencentCloudSettings.DefaultCountryCode,
+                "+86",
+                L("DefaultCountryCode")));
         }
         
         private static LocalizableString L(string name)
