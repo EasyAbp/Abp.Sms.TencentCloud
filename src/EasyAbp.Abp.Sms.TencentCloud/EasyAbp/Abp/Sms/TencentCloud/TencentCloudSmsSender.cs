@@ -71,7 +71,7 @@ namespace EasyAbp.Abp.Sms.TencentCloud
                 null => null,
                 string str => _jsonSerializer.Deserialize<string[]>(str),
                 IEnumerable<string> set => set.ToArray(),
-                _ => throw new InvalidTemplateParamSetException()
+                _ => _jsonSerializer.Deserialize<string[]>(_jsonSerializer.Serialize(obj))
             };
         }
     }
