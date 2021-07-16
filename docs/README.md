@@ -22,8 +22,6 @@ Abp TencentCloud SMS module.
     ```csharp
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        context.Services.AddAlwaysAllowAuthorization();
-        
         Configure<AbpTencentCloudCommonOptions>(op =>
         {
             op.SecretId = "pUqsqkj1EhAYJXbSjRupWDviPAMyEaSrH5vY";
