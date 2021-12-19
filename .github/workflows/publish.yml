@@ -10,6 +10,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: NuGet/setup-nuget@v1.0.5
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.0.x'
 
       - name: read common.props
         id: commonProps
@@ -42,7 +45,6 @@ jobs:
           del *.HttpApi.Client.ConsoleTestApp*
           del *.Host.Shared*
           dir -name
-
       - name: dotnet nuget push to GitHub
         uses: tanaka-takayoshi/nuget-publish-to-github-packages-action@v2.1
         with:
