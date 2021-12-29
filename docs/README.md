@@ -4,6 +4,7 @@
 [![NuGet](https://img.shields.io/nuget/v/EasyAbp.Abp.Sms.TencentCloud.svg?style=flat-square)](https://www.nuget.org/packages/EasyAbp.Abp.Sms.TencentCloud)
 [![NuGet Download](https://img.shields.io/nuget/dt/EasyAbp.Abp.Sms.TencentCloud.svg?style=flat-square)](https://www.nuget.org/packages/EasyAbp.Abp.Sms.TencentCloud)
 [![GitHub stars](https://img.shields.io/github/stars/EasyAbp/Abp.Sms.TencentCloud?style=social)](https://www.github.com/EasyAbp/Abp.Sms.TencentCloud)
+[![Discord online](https://badgen.net/discord/online-members/S6QaezrCRq?label=Discord)](https://discord.gg/S6QaezrCRq)
 
 Abp TencentCloud SMS module.
 
