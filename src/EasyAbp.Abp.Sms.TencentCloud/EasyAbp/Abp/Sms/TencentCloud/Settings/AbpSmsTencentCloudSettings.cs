@@ -20,5 +20,8 @@
         public const string DefaultExtendCode = Prefix + ".DefaultExtendCode";
         
         public const string DefaultSenderId = Prefix + ".DefaultSenderId";
+
+        public const string DefaultCountryCode = Prefix + ".DefaultCountryCode";
+
     }
 }
