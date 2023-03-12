@@ -2,7 +2,7 @@
   <PropertyGroup>
 
     <AbpVersion>7.0.0</AbpVersion>
-    <EasyAbpAbpTencentCloudModuleVersion>1.8.0</EasyAbpAbpTencentCloudModuleVersion>
+    <EasyAbpAbpTencentCloudModuleVersion>1.10.0</EasyAbpAbpTencentCloudModuleVersion>
 
   </PropertyGroup>
 </Project>
