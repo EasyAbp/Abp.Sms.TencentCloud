@@ -48,7 +48,8 @@ namespace EasyAbp.Abp.Sms.TencentCloud
             var commonOptions = new AbpTencentCloudCommonOptions
             {
                 SecretId = await _settingProvider.GetOrNullAsync(AbpSmsTencentCloudSettings.DefaultSecretId),
-                SecretKey = await _settingProvider.GetOrNullAsync(AbpSmsTencentCloudSettings.DefaultSecretKey)
+                SecretKey = await _settingProvider.GetOrNullAsync(AbpSmsTencentCloudSettings.DefaultSecretKey),
+                Region = await _settingProvider.GetOrNullAsync(AbpSmsTencentCloudSettings.DefaultRegion)
             };
 
             await _requester.SendRequestAsync<SendSmsResponse>(request,
