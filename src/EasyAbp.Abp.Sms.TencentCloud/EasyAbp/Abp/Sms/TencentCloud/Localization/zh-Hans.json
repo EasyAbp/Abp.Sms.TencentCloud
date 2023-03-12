@@ -4,7 +4,8 @@
     "EndPoint": "腾讯云 API 端点地址",
     "DefaultSecretId": "SecretId 默认值",
     "DefaultSecretKey": "SecretKey 默认值",
-    "DefaultSmsSdkAppid": "SdkAppid 默认值",
+    "DefaultRegion": "Region 默认值",
+    "DefaultSmsSdkAppid": "SmsSdkAppid 默认值",
     "DefaultSign": "Sign 默认值",
     "DefaultExtendCode": "ExtendCode 默认值",
     "DefaultSenderId": "SenderId 默认值"

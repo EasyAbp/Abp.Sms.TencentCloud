@@ -41,6 +41,11 @@ namespace EasyAbp.Abp.Sms.TencentCloud.Settings
                 L("DefaultSecretKey")));
             
             context.Add(new SettingDefinition(
+                AbpSmsTencentCloudSettings.DefaultRegion,
+                _commonOptions.Region,
+                L("DefaultRegion")));
+            
+            context.Add(new SettingDefinition(
                 AbpSmsTencentCloudSettings.DefaultSmsSdkAppid,
                 _smsOptions.DefaultSmsSdkAppid,
                 L("DefaultSmsSdkAppid")));
