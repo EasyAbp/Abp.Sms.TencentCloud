@@ -59,6 +59,13 @@ namespace EasyAbp.Abp.Sms.TencentCloud
             {
                 throw new FailedToSendSmsException(response.Error.Code, response.Error.Message);
             }
+
+            if (!response.SendStatusSet.IsNullOrEmpty() && response.SendStatusSet.First().Code != "Ok")
+            {
+                var firstStatus = response.SendStatusSet.First();
+
+                throw new FailedToSendSmsException(firstStatus.Code, firstStatus.Message);
+            }
         }
 
         protected virtual string GetStringProperty(SmsMessage smsMessage, string key, string defaultValue = null)
