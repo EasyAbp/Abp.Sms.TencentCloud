@@ -27,11 +27,11 @@ namespace EasyAbp.Abp.Sms.TencentCloud
             _settingProvider = settingProvider;
             _requester = requester;
         }
-        
+
         public virtual async Task SendAsync(SmsMessage smsMessage)
         {
             var request = new SendSmsRequest(
-                new[] {smsMessage.PhoneNumber},
+                new[] { smsMessage.PhoneNumber },
                 GetStringProperty(smsMessage, AbpSmsTencentCloudConsts.TemplateIdPropertyName),
                 GetStringProperty(smsMessage, AbpSmsTencentCloudConsts.SmsSdkAppidPropertyName,
                     await _settingProvider.GetOrNullAsync(AbpSmsTencentCloudSettings.DefaultSmsSdkAppid)),
@@ -44,7 +44,7 @@ namespace EasyAbp.Abp.Sms.TencentCloud
                 GetStringProperty(smsMessage, AbpSmsTencentCloudConsts.SenderIdPropertyName,
                     await _settingProvider.GetOrNullAsync(AbpSmsTencentCloudSettings.DefaultSenderId))
             );
-            
+
             var commonOptions = new AbpTencentCloudCommonOptions
             {
                 SecretId = await _settingProvider.GetOrNullAsync(AbpSmsTencentCloudSettings.DefaultSecretId),
@@ -59,7 +59,7 @@ namespace EasyAbp.Abp.Sms.TencentCloud
         protected virtual string GetStringProperty(SmsMessage smsMessage, string key, string defaultValue = null)
         {
             var str = smsMessage.Properties.GetOrDefault(key) as string;
-            
+
             return !str.IsNullOrEmpty() ? str : defaultValue;
         }
 
@@ -67,13 +67,20 @@ namespace EasyAbp.Abp.Sms.TencentCloud
         {
             var obj = smsMessage.Properties.GetOrDefault(AbpSmsTencentCloudConsts.TemplateParamSetPropertyName);
 
-            return obj switch
+            try
             {
-                null => null,
-                string str => _jsonSerializer.Deserialize<string[]>(str),
-                IEnumerable<string> set => set.ToArray(),
-                _ => throw new InvalidTemplateParamSetException()
-            };
+                return obj switch
+                {
+                    null => null,
+                    string str => _jsonSerializer.Deserialize<string[]>(str),
+                    IEnumerable<string> set => set.ToArray(),
+                    _ => _jsonSerializer.Deserialize<string[]>(obj.ToString())
+                };
+            }
+            catch
+            {
+                throw new InvalidTemplateParamSetException();
+            }
         }
     }
 }
