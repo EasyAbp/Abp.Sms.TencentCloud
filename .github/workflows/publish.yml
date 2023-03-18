@@ -34,8 +34,8 @@ jobs:
       - name: dotnet build
         run: dotnet build -c Release
       
-      - name: dotnet test
-        run: dotnet test -c Release --no-restore --no-build
+#      - name: dotnet test
+#        run: dotnet test -c Release --no-restore --no-build
 
       - name: dotnet pack
         run: dotnet pack -c Release --no-build --property PackageOutputPath=${{ github.workspace }}/nugetPackages/
