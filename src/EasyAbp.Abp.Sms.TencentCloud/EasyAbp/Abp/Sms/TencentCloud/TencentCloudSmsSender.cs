@@ -52,8 +52,13 @@ namespace EasyAbp.Abp.Sms.TencentCloud
                 Region = await _settingProvider.GetOrNullAsync(AbpSmsTencentCloudSettings.DefaultRegion)
             };
 
-            await _requester.SendRequestAsync<SendSmsResponse>(request,
+            var response = await _requester.SendRequestAsync<SendSmsResponse>(request,
                 await _settingProvider.GetOrNullAsync(AbpSmsTencentCloudSettings.EndPoint), commonOptions);
+
+            if (response.Error != null)
+            {
+                throw new FailedToSendSmsException(response.Error.Code, response.Error.Message);
+            }
         }
 
         protected virtual string GetStringProperty(SmsMessage smsMessage, string key, string defaultValue = null)
