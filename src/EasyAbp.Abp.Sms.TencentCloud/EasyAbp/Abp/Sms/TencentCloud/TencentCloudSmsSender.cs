@@ -30,8 +30,12 @@ namespace EasyAbp.Abp.Sms.TencentCloud
 
         public virtual async Task SendAsync(SmsMessage smsMessage)
         {
+            var phoneNumber = smsMessage.PhoneNumber.StartsWith("1") && smsMessage.PhoneNumber.Length == 11
+                ? $"+86{smsMessage.PhoneNumber}"
+                : smsMessage.PhoneNumber;
+
             var request = new SendSmsRequest(
-                new[] { smsMessage.PhoneNumber },
+                new[] { phoneNumber },
                 GetStringProperty(smsMessage, AbpSmsTencentCloudConsts.TemplateIdPropertyName),
                 GetStringProperty(smsMessage, AbpSmsTencentCloudConsts.SmsSdkAppidPropertyName,
                     await _settingProvider.GetOrNullAsync(AbpSmsTencentCloudSettings.DefaultSmsSdkAppid)),
