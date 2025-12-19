@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <AbpVersion>9.3.3</AbpVersion>
-    <EasyAbpAbpTencentCloudModuleVersion>1.23.0</EasyAbpAbpTencentCloudModuleVersion>
+    <AbpVersion>10.0.1</AbpVersion>
+    <EasyAbpAbpTencentCloudModuleVersion>1.24.0</EasyAbpAbpTencentCloudModuleVersion>
   </PropertyGroup>
 </Project>
