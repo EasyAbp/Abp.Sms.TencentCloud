@@ -11,7 +11,7 @@ using Microsoft.Extensions.Hosting;
 using EasyAbp.Abp.Sms.TencentCloud.EntityFrameworkCore;
 using EasyAbp.Abp.Sms.TencentCloud.MultiTenancy;
 using StackExchange.Redis;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using Swashbuckle.AspNetCore.Swagger;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.MultiTenancy;
